@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mauri-Ticket</title>
+    <meta name="theme-color" content="#c8851a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mauri-Ticket" />
+    <style>
+      #splash {
+        position: fixed; inset: 0;
+        background: #0a0a0a;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.8s ease;
+        overflow: hidden;
+      }
+      #splash.hide { opacity: 0; pointer-events: none; }
+      .sp-ring {
+        position: absolute; border-radius: 50%;
+        border: 1px solid rgba(200,133,26,0.12);
+        width: 300px; height: 300px;
+        animation: expandRing 3s ease-out infinite;
+        opacity: 0;
+      }
+      @keyframes expandRing {
+        0% { transform: scale(0.3); opacity: 0.5; }
+        100% { transform: scale(3); opacity: 0; }
+      }
+      .sp-logo {
+        width: 90px; height: 90px;
+        background: linear-gradient(135deg, #b8720f, #f5c842, #c8851a);
+        border-radius: 24px;
+        display: flex; align-items: center; justify-content: center;
+        animation: logoIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+      }
+      .sp-logo svg { width: 46px; height: 46px; fill: white; }
+      @keyframes logoIn {
+        from { opacity: 0; transform: scale(0.3) translateY(30px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      .sp-title {
+        font-family: sans-serif; font-size: 28px; font-weight: 900;
+        color: white; letter-spacing: 3px; margin-top: 24px;
+        animation: fadeUp 0.8s ease 0.8s both;
+      }
+      .sp-title span { color: #c8851a; }
+      .sp-tagline {
+        font-family: sans-serif; font-size: 11px; font-weight: 600;
+        color: #c8851a; letter-spacing: 5px; text-transform: uppercase;
+        margin-top: 6px; animation: fadeUp 0.8s ease 1s both;
+      }
+      .sp-divider {
+        width: 40px; height: 1px; margin: 20px auto;
+        background: linear-gradient(90deg, transparent, #c8851a, transparent);
+        animation: fadeUp 0.8s ease 1.1s both;
+      }
+      .sp-slogan {
+        font-family: sans-serif; font-size: 12px; color: #555;
+        letter-spacing: 1px; animation: fadeUp 0.8s ease 1.2s both;
+      }
+      .sp-bar-wrap { margin-top: 40px; width: 140px; animation: fadeUp 0.8s ease 1.3s both; }
+      .sp-bar-label {
+        font-family: sans-serif; font-size: 9px; color: #444;
+        letter-spacing: 2px; text-transform: uppercase;
+        margin-bottom: 8px; text-align: center;
+      }
+      .sp-bar-track { width: 100%; height: 2px; background: #1a1a1a; border-radius: 99px; overflow: hidden; }
+      .sp-bar-fill {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #c8851a, #f5c842);
+        border-radius: 99px;
+        animation: fillBar 2s ease 1.5s both;
+      }
+      @keyframes fillBar { from { width: 0%; } to { width: 100%; } }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .sp-version {
+        position: absolute; bottom: 40px;
+        font-family: sans-serif; font-size: 10px; color: #2a2a2a;
+        letter-spacing: 2px; animation: fadeUp 0.8s ease 1.6s both;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="splash">
+      <div class="sp-ring" style="animation-delay:0.5s"></div>
+      <div class="sp-ring" style="animation-delay:1.5s"></div>
+      <div class="sp-ring" style="animation-delay:2.5s"></div>
+      <div class="sp-logo">
+        <svg viewBox="0 0 24 24"><path d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2s-.9 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2z"/></svg>
+      </div>
+      <div class="sp-title">MAURI<span>-</span>TICKET</div>
+      <div class="sp-tagline">Billetterie en ligne</div>
+      <div class="sp-divider"></div>
+      <div class="sp-slogan">Votre événement, notre passion</div>
+      <div class="sp-bar-wrap">
+        <div class="sp-bar-label">Chargement</div>
+        <div class="sp-bar-track"><div class="sp-bar-fill"></div></div>
+      </div>
+      <div class="sp-version">v1.0 · Mauritanie</div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const splash = document.getElementById('splash')
+          splash.classList.add('hide')
+          setTimeout(() => splash.remove(), 800)
+        }, 3000)
+      })
+    </script>
+  </body>
+</html>

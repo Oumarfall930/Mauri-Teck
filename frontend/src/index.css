@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #D4A853;
+    --gold-light: #F0C878;
+    --desert: #1A1200;
+    --sand: #FFF8F0;
+  }
+
+  * { box-sizing: border-box; }
+  
+  body {
+    @apply bg-night-900 text-desert-50 font-body;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(212,168,83,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(212,168,83,0.02) 0%, transparent 50%);
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0D0A00; }
+  ::-webkit-scrollbar-thumb { background: #D4A853; border-radius: 3px; }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-sahara-400 hover:bg-sahara-500 text-night-900 font-semibold px-6 py-3 rounded-lg transition-all duration-200 active:scale-95 shadow-lg;
+    box-shadow: 0 4px 20px rgba(212,168,83,0.3);
+  }
+  .btn-gold:hover { box-shadow: 0 6px 30px rgba(212,168,83,0.5); }
+  
+  .btn-outline {
+    @apply border border-sahara-400 text-sahara-400 hover:bg-sahara-400 hover:text-night-900 font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+  }
+  
+  .card {
+    @apply bg-night-800 border border-night-700 rounded-2xl;
+    background: linear-gradient(135deg, rgba(26,18,0,0.95) 0%, rgba(13,10,0,0.95) 100%);
+  }
+  
+  .input {
+    @apply bg-night-700 border border-night-600 text-desert-100 placeholder-desert-600 rounded-lg px-4 py-3 w-full focus:outline-none focus:border-sahara-400 transition-colors;
+  }
+  
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .glass {
+    background: rgba(26, 18, 0, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 168, 83, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #D4A853 0%, #F0C878 50%, #D4A853 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .divider {
+    @apply border-t border-night-700;
+  }
+}
+
+/* Ticket card design */
+.ticket-card {
+  position: relative;
+  overflow: hidden;
+}
+.ticket-card::before, .ticket-card::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  background: #0D0A00;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ticket-card::before { left: -12px; }
+.ticket-card::after  { right: -12px; }
+
+/* Scan animation */
+@keyframes scanLine {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+.scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4A853, transparent);
+  animation: scanLine 2s ease-in-out infinite;
+  box-shadow: 0 0 10px #D4A853;
+}
+
+/* Page transitions */
+.page-enter { animation: fadeIn 0.3s ease forwards; }
